@@ -104,6 +104,14 @@ export function HeroSection() {
 
   const currentSlide = SLIDES[currentIndex];
 
+  // Auto-scroll every 2 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      paginate(1);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative h-screen w-full overflow-hidden flex flex-col justify-end bg-dark">
       
