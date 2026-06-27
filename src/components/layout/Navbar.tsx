@@ -7,7 +7,14 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-
 import { Button } from "../ui/Button";
 
 const NAV_LINKS = [
-  { name: "Services", href: "/services" },
+  { 
+    name: "Services", 
+    href: "/services",
+    subLinks: [
+      { name: "For Her", href: "/services?gender=women" },
+      { name: "For Him", href: "/services?gender=men" }
+    ]
+  },
   { name: "Team", href: "/team" },
   { name: "Gallery", href: "/gallery" },
   { name: "Journal", href: "/journal" },
@@ -33,11 +40,9 @@ export function Navbar() {
       setIsScrolled(false);
     }
 
-    // Hide navbar if scrolling down and past 300px
     if (latest > previous && latest > 300) {
       setIsHidden(true);
     } 
-    // Show navbar if scrolling up
     else if (latest < previous) {
       setIsHidden(false);
     }
@@ -45,7 +50,6 @@ export function Navbar() {
 
   const isTransparent = isHomePage && !isScrolled && !isMobileMenuOpen;
 
-  // Prevent scrolling when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -87,14 +91,30 @@ export function Navbar() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                className="relative group"
               >
-                <Link href={link.href} className="relative group overflow-hidden block py-2">
+                <Link href={link.href} className="relative block py-2 overflow-hidden">
                   <span className="relative z-10 group-hover:text-gold transition-colors duration-300">
                     {link.name}
                   </span>
-                  {/* Animated Underline */}
                   <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold origin-right scale-x-0 transition-transform duration-500 ease-out group-hover:origin-left group-hover:scale-x-100" />
                 </Link>
+                
+                {link.subLinks && (
+                  <div className="absolute top-full left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    <div className="bg-dark/95 backdrop-blur-md border border-gold/20 p-6 min-w-[180px] flex flex-col gap-4 shadow-xl">
+                      {link.subLinks.map((sub) => (
+                        <Link 
+                          key={sub.name} 
+                          href={sub.href}
+                          className="hover:text-gold transition-colors block tracking-widest-2 text-xs"
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </motion.div>
             ))}
             
@@ -110,7 +130,6 @@ export function Navbar() {
             </motion.div>
           </nav>
 
-          {/* Mobile Hamburger */}
           <motion.button 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -128,7 +147,6 @@ export function Navbar() {
         </div>
       </motion.header>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
@@ -136,25 +154,46 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-50 bg-dark flex flex-col items-center justify-center lg:hidden"
+            className="fixed inset-0 z-50 bg-dark flex flex-col items-center justify-center lg:hidden overflow-y-auto pt-24 pb-12"
           >
-            <nav className="flex flex-col items-center gap-8 font-display text-h3 text-cream">
+            <nav className="flex flex-col items-center gap-6 font-display text-h3 text-cream my-auto">
               {NAV_LINKS.map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
-                >
-                  <Link 
-                    href={link.href} 
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="hover:text-gold transition-colors duration-300 uppercase tracking-widest"
+                <div key={link.name} className="flex flex-col items-center">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
+                    <Link 
+                      href={link.href} 
+                      onClick={() => !link.subLinks && setIsMobileMenuOpen(false)}
+                      className="hover:text-gold transition-colors duration-300 uppercase tracking-widest"
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                  
+                  {link.subLinks && (
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+                      className="flex flex-col items-center mt-4 gap-4 text-gold/80 text-lg font-body"
+                    >
+                      {link.subLinks.map((sub) => (
+                        <Link 
+                          key={sub.name} 
+                          href={sub.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="hover:text-gold transition-colors uppercase tracking-widest-2 text-sm"
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </div>
               ))}
               
               <motion.div
@@ -162,7 +201,7 @@ export function Navbar() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.4, delay: 0.2 + NAV_LINKS.length * 0.1 }}
-                className="mt-8"
+                className="mt-6"
               >
                 <Button 
                   onClick={() => {
@@ -177,7 +216,7 @@ export function Navbar() {
               </motion.div>
             </nav>
             
-            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-gold/10 to-transparent pointer-events-none" />
+            <div className="fixed bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-gold/10 to-transparent pointer-events-none" />
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,5 +1,6 @@
+import { Suspense } from "react";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { ServicesSection } from "@/components/sections/ServicesSection";
+import { FullServiceMenu } from "@/components/sections/FullServiceMenu";
 import { PreFooterCTA } from "@/components/sections/PreFooterCTA";
 
 export default function ServicesPage() {
@@ -11,7 +12,9 @@ export default function ServicesPage() {
         subtitle="The Menu"
         description="Experience world-class beauty treatments and mindful rituals crafted for the modern individual."
       />
-      <ServicesSection />
+      <Suspense fallback={<div className="min-h-screen bg-dark-2" />}>
+        <FullServiceMenu />
+      </Suspense>
       <PreFooterCTA />
     </div>
   );
