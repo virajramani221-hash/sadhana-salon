@@ -3,6 +3,9 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { FullServiceMenu } from "@/components/sections/FullServiceMenu";
 import { PreFooterCTA } from "@/components/sections/PreFooterCTA";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function ServicesPage() {
   return (
     <div className="w-full">
