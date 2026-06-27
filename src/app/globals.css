@@ -1,14 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-dark: #1A1712;
-  --color-dark-2: #2C2820;
-  --color-gold: #B8955A;
-  --color-gold-light: #C9A87C;
-  --color-cream: #F7F3EE;
-  --color-cream-2: #EDE8E0;
-  --color-muted: #6B6359;
-  --color-sage: #8A9E8C;
+  /* Terracotta & Rosewood Palette */
+  --s-midnight: #1A0F0A;
+  --s-rosewood: #2D1A14;
+  --s-terracotta: #C4614A;
+  --s-peach: #E8A87C;
+  --s-petal: #FDF7F2;
+  --s-blush: #F5E9E2;
+  --s-coral-soft: #F2E0D4;
+  --s-linen: #E8D5C8;
+  --s-mocha: #C4A08A;
+  --s-cinnamon: #7A5548;
+
+  /* Tailwind Component Mappings */
+  --color-dark: var(--s-midnight);
+  --color-dark-2: var(--s-rosewood);
+  --color-gold: var(--s-terracotta);
+  --color-gold-light: var(--s-peach);
+  --color-cream: var(--s-petal);
+  --color-cream-2: var(--s-blush);
+  --color-muted: var(--s-mocha);
+  --color-sage: var(--s-cinnamon);
   
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-jost), "Helvetica Neue", sans-serif;
