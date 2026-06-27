@@ -6,6 +6,7 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -60,6 +61,7 @@ export default function RootLayout({
             </PageTransition>
             <Footer />
             <WhatsAppButton />
+            <CustomCursor />
           </GSAPProvider>
         </SmoothScrollProvider>
       </body>

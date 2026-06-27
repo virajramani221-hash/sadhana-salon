@@ -1,10 +1,11 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionEyebrow } from "../ui/SectionEyebrow";
 import { Button } from "../ui/Button";
+import { TextReveal } from "../ui/TextReveal";
+import { ParallaxImage } from "../ui/ParallaxImage";
 
 const GALLERY = [
   { img: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=800&q=80", tag: "Hair" },
@@ -27,7 +28,7 @@ export function GallerySection() {
           >
             <SectionEyebrow label="Our Portfolio" className="mb-6" />
             <h2 className="font-display text-h2 text-dark leading-tight">
-              Featured <span className="italic text-gold">Work</span>
+              <TextReveal text="Featured Work" />
             </h2>
           </motion.div>
           <motion.div
@@ -53,12 +54,10 @@ export function GallerySection() {
               transition={{ duration: 0.8, delay: idx * 0.15, ease: "easeOut" }}
               className="relative group overflow-hidden cursor-pointer aspect-[3/4] md:aspect-square"
             >
-              <Image 
+              <ParallaxImage 
                 src={item.img} 
                 alt={item.tag} 
-                fill 
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                sizes="(max-width: 768px) 50vw, 33vw"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-dark/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <span className="font-body tracking-widest-2 uppercase text-cream text-sm">

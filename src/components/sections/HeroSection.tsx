@@ -71,19 +71,34 @@ export function HeroSection() {
 
   const slideVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
+      scale: 1.1,
+      clipPath: direction > 0 ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)",
+      zIndex: 1,
     }),
     center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1
+      scale: 1,
+      clipPath: "inset(0 0 0 0)",
+      zIndex: 2,
     },
     exit: (direction: number) => ({
+      scale: 1,
       zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
     })
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.05 }
+    },
+    exit: { opacity: 0, y: -20, transition: { duration: 0.2 } }
+  };
+
+  const letterVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
   };
 
   // Drastically lower threshold so sliding is easy and completely controlled by the user's hand
@@ -125,8 +140,8 @@ export function HeroSection() {
           animate="center"
           exit="exit"
           transition={{
-            x: { type: "spring", stiffness: 400, damping: 40 },
-            opacity: { duration: 0.5 }
+            scale: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+            clipPath: { duration: 0.8, ease: [0.77, 0, 0.175, 1] }
           }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -165,16 +180,20 @@ export function HeroSection() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`text-${currentIndex}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                variants={textVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
               >
-                <div className="font-body text-xs tracking-widest-3 uppercase text-gold mb-6">
+                <motion.div variants={letterVariants} className="font-body text-xs tracking-widest-3 uppercase text-gold mb-6">
                   {currentSlide.subtitle}
-                </div>
-                <h1 className="font-display text-hero leading-[1] text-cream mb-10">
-                  {currentSlide.title}
+                </motion.div>
+                <h1 className="font-display text-hero leading-[1] text-cream mb-10 overflow-hidden flex flex-wrap">
+                  {currentSlide.title.split("").map((char, index) => (
+                    <motion.span key={index} variants={letterVariants} className="inline-block">
+                      {char === " " ? "\u00A0" : char}
+                    </motion.span>
+                  ))}
                 </h1>
               </motion.div>
             </AnimatePresence>

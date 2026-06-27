@@ -1,10 +1,11 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionEyebrow } from "../ui/SectionEyebrow";
 import { GoldDivider } from "../ui/GoldDivider";
+import { TextReveal } from "../ui/TextReveal";
+import { ParallaxImage } from "../ui/ParallaxImage";
 
 export function AboutSection() {
   return (
@@ -21,12 +22,10 @@ export function AboutSection() {
             className="w-full lg:w-1/2 relative"
           >
             <div className="aspect-[4/5] relative w-full overflow-hidden rounded-sm">
-              <Image 
+              <ParallaxImage 
                 src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=1200&q=85"
                 alt="Stylist working on client"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="w-full h-full"
               />
             </div>
             {/* Decorative element */}
@@ -51,24 +50,21 @@ export function AboutSection() {
               <SectionEyebrow label="Our Philosophy" className="mb-6" />
             </motion.div>
             
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              className="font-display text-h2 text-dark leading-tight mb-8"
-            >
-              A sanctuary where <span className="italic text-gold">craft meets calm.</span>
-            </motion.h2>
+            <h2 className="font-display text-h2 text-dark leading-tight mb-8">
+              <TextReveal text="A sanctuary where craft meets calm." />
+            </h2>
             
-            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="font-body text-muted mb-6 leading-relaxed">
-              At Sadhana Salon, we believe that beauty is not just a service—it&apos;s a ritual. 
-              Our highly trained masters combine modern techniques with mindful practices to 
-              create an experience that transcends the ordinary.
-            </motion.p>
+            <TextReveal 
+              text="At Sadhana Salon, we believe that beauty is not just a service—it's a ritual. Our highly trained masters combine modern techniques with mindful practices to create an experience that transcends the ordinary." 
+              className="font-body text-muted mb-6 leading-relaxed" 
+              delay={0.2}
+            />
             
-            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="font-body text-muted mb-12 leading-relaxed">
-              Every detail, from our warm ambient lighting to our curated selection of 
-              premium products, is designed to bring you to a state of complete relaxation 
-              while we perfect your look.
-            </motion.p>
+            <TextReveal 
+              text="Every detail, from our warm ambient lighting to our curated selection of premium products, is designed to bring you to a state of complete relaxation while we perfect your look." 
+              className="font-body text-muted mb-12 leading-relaxed"
+              delay={0.4}
+            />
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <GoldDivider className="mb-8" />

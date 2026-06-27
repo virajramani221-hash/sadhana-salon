@@ -50,7 +50,7 @@ export function TeamSection() {
                   src={member.img}
                   alt={member.name}
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-105"
+                  className="object-cover grayscale-0 md:grayscale group-hover:grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-105 md:group-hover:scale-105 scale-100"
                   sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 25vw"
                 />
                 {/* Dark gradient overlay on hover */}
