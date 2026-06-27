@@ -121,18 +121,18 @@ export function ServicesSection() {
         </motion.div>
 
         {/* Services Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[500px]">
-          <AnimatePresence mode="popLayout">
-            {filteredServices.map((service, idx) => (
-              <motion.div 
-                key={service.title}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, delay: idx * 0.05, ease: "easeOut" }}
-                className="group border border-gold/10 bg-dark p-8 hover:border-gold/30 transition-colors duration-500 flex flex-col justify-between min-h-[240px] cursor-pointer"
-              >
+        <div className="min-h-[500px]">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatePresence>
+              {filteredServices.map((service, idx) => (
+                <motion.div 
+                  key={service.title}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4, delay: idx * 0.05, ease: "easeOut" }}
+                  className="group border border-gold/10 bg-dark p-8 hover:border-gold/30 transition-colors duration-500 flex flex-col justify-between min-h-[240px] cursor-pointer"
+                >
                 <div>
                   <div className="font-body text-xs tracking-widest-3 uppercase text-gold mb-4">
                     {service.category}
@@ -153,7 +153,8 @@ export function ServicesSection() {
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+          </motion.div>
+        </div>
 
       </div>
     </section>
