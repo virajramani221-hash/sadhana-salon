@@ -41,6 +41,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <motion.button
+        suppressHydrationWarning
         ref={ref}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.97 }}

@@ -51,8 +51,8 @@ export function Footer() {
           <h4 className="font-body text-xs tracking-widest-3 uppercase text-muted mb-4">Connect</h4>
           <p className="font-body text-sm text-muted mb-4">Join our newsletter for exclusive rituals.</p>
             <form onSubmit={handleSubscribe} className="flex">
-              <input name="email" type="email" required placeholder="Your email" className="bg-transparent border-b border-muted/50 px-0 py-2 w-full text-sm focus:outline-none focus:border-gold transition-colors text-cream" />
-              <button type="submit" disabled={status === "loading" || status === "success"} className="text-gold font-body tracking-widest-2 text-sm ml-4 hover:text-gold-light disabled:opacity-50">
+              <input suppressHydrationWarning name="email" type="email" required placeholder="Your email" className="bg-transparent border-b border-muted/50 px-0 py-2 w-full text-sm focus:outline-none focus:border-gold transition-colors text-cream" />
+              <button suppressHydrationWarning type="submit" disabled={status === "loading" || status === "success"} className="text-gold font-body tracking-widest-2 text-sm ml-4 hover:text-gold-light disabled:opacity-50">
                 {status === "loading" ? "..." : status === "success" ? "Done" : "Subscribe"}
               </button>
             </form>

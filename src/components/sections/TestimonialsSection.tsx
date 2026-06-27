@@ -51,10 +51,10 @@ export function TestimonialsSection() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="flex justify-center gap-4 mt-12"
         >
-          <button className="w-12 h-12 rounded-full border border-dark/20 flex items-center justify-center text-dark hover:border-dark transition-colors">
+          <button suppressHydrationWarning className="w-12 h-12 rounded-full border border-dark/20 flex items-center justify-center text-dark hover:border-dark transition-colors">
             ←
           </button>
-          <button className="w-12 h-12 rounded-full border border-dark/20 flex items-center justify-center text-dark hover:border-dark transition-colors">
+          <button suppressHydrationWarning className="w-12 h-12 rounded-full border border-dark/20 flex items-center justify-center text-dark hover:border-dark transition-colors">
             →
           </button>
         </motion.div>

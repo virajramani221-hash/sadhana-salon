@@ -12,6 +12,7 @@ export const FormField = React.forwardRef<HTMLInputElement, FormFieldProps>(
     return (
       <div className={cn("relative group w-full", className)}>
         <input
+          suppressHydrationWarning
           id={inputId}
           ref={ref}
           placeholder=" "
