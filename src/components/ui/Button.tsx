@@ -55,7 +55,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {...props}
       >
-        <span className="relative z-10">{children}</span>
+        <span className="relative z-10">{children as React.ReactNode}</span>
         {ripples.map((ripple) => (
           <motion.span
             key={ripple.id}
