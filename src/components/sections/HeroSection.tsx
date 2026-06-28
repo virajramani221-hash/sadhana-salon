@@ -98,7 +98,7 @@ export function HeroSection() {
 
   const letterVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+    visible: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100 } }
   };
 
   // Drastically lower threshold so sliding is easy and completely controlled by the user's hand
