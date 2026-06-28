@@ -49,7 +49,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           whileTap={{ scale: 0.97 }}
           onClick={handleClick}
           className={cn(
-            "relative overflow-hidden inline-flex items-center justify-center transition-colors duration-300 min-h-[44px] min-w-[44px] px-8 py-4 font-body tracking-widest-2 uppercase text-sm cursor-none",
+            "relative overflow-hidden inline-flex items-center justify-center transition-colors duration-300 min-h-[44px] min-w-[44px] px-8 py-4 font-body tracking-widest-2 uppercase text-sm cursor-pointer group",
             {
               "bg-dark text-cream hover:bg-dark-2": variant === "primary",
               "border border-gold text-gold hover:bg-gold hover:text-dark": variant === "ghost",
@@ -58,6 +58,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           )}
           {...props}
         >
+          {/* Glass Shine Sweep */}
+          <div className="absolute inset-0 -translate-x-[120%] group-hover:translate-x-[120%] transition-transform duration-[1.5s] ease-in-out pointer-events-none z-20">
+            <div className="h-full w-12 bg-white/20 skew-x-[30deg] blur-[4px]" />
+          </div>
           <span className="relative z-10">{children as React.ReactNode}</span>
           {ripples.map((ripple) => (
             <motion.span

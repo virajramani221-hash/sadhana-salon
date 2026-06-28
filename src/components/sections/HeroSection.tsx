@@ -76,7 +76,7 @@ export function HeroSection() {
       zIndex: 1,
     }),
     center: {
-      scale: 1,
+      scale: 1.08,
       clipPath: "inset(0 0 0 0)",
       zIndex: 2,
     },
@@ -140,7 +140,7 @@ export function HeroSection() {
           animate="center"
           exit="exit"
           transition={{
-            scale: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+            scale: { duration: 25, ease: "linear" },
             clipPath: { duration: 0.8, ease: [0.77, 0, 0.175, 1] }
           }}
           drag="x"
@@ -165,10 +165,10 @@ export function HeroSection() {
             fill
             priority
             draggable={false}
-            className="object-cover opacity-60 select-none pointer-events-none"
+            className="object-cover opacity-100 select-none pointer-events-none"
           />
-          {/* Dark Gradient Overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/30 to-dark/10 pointer-events-none" />
+          {/* Subtle Gradient Overlay for text readability only at the bottom */}
+          <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent pointer-events-none" />
         </motion.div>
       </AnimatePresence>
 

@@ -7,6 +7,7 @@ import { GallerySection } from "@/components/sections/GallerySection";
 import { JournalSection } from "@/components/sections/JournalSection";
 import { PreFooterCTA } from "@/components/sections/PreFooterCTA";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { InfiniteMarquee } from "@/components/ui/InfiniteMarquee";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <ServicesSection />
+      <InfiniteMarquee />
       <TeamSection />
       <TestimonialsSection />
       <GallerySection />

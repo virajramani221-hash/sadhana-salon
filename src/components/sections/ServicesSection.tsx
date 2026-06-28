@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SectionEyebrow } from "../ui/SectionEyebrow";
 import { Button } from "../ui/Button";
 import { GoldDivider } from "../ui/GoldDivider";
+import { TiltCard } from "../ui/TiltCard";
 
 // --- Service Data ---
 const WOMEN_SERVICES = [
@@ -131,26 +132,28 @@ export function ServicesSection() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4, delay: idx * 0.05, ease: "easeOut" }}
-                  className="group border border-gold/10 bg-dark p-8 hover:border-gold/30 transition-colors duration-500 flex flex-col justify-between min-h-[240px] cursor-pointer"
+                  className="h-full"
                 >
-                <div>
-                  <div className="font-body text-xs tracking-widest-3 uppercase text-gold mb-4">
-                    {service.category}
-                  </div>
-                  <h3 className="font-display text-2xl text-cream mb-2 group-hover:text-gold-light transition-colors">
-                    {service.title}
-                  </h3>
-                </div>
-                <div>
-                  <GoldDivider className="mb-4 opacity-30 group-hover:opacity-100" animated={false} />
-                  <div className="flex justify-between items-center text-cream">
-                    <span className="font-body tracking-wider">{service.price}</span>
-                    <span className="font-body text-xs uppercase tracking-widest-2 text-gold group-hover:translate-x-2 transition-transform duration-300">
-                      Book →
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
+                  <TiltCard className="group h-full border border-gold/10 bg-dark/60 backdrop-blur-md p-8 hover:border-gold/30 hover:shadow-[0_0_30px_rgba(212,175,55,0.1)] transition-all duration-500 flex flex-col justify-between min-h-[240px] cursor-pointer">
+                    <div>
+                      <div className="font-body text-xs tracking-widest-3 uppercase text-gold mb-4">
+                        {service.category}
+                      </div>
+                      <h3 className="font-display text-2xl text-cream mb-2 group-hover:text-gold-light transition-colors">
+                        {service.title}
+                      </h3>
+                    </div>
+                    <div>
+                      <GoldDivider className="mb-4 opacity-30 group-hover:opacity-100" animated={false} />
+                      <div className="flex justify-between items-center text-cream">
+                        <span className="font-body tracking-wider">{service.price}</span>
+                        <span className="font-body text-xs uppercase tracking-widest-2 text-gold group-hover:translate-x-2 transition-transform duration-300">
+                          Book →
+                        </span>
+                      </div>
+                    </div>
+                  </TiltCard>
+                </motion.div>
             ))}
           </AnimatePresence>
           </motion.div>
